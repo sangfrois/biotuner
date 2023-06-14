@@ -62,6 +62,9 @@ extensions = ["nbsphinx", "sphinx_nbexamples",
               "sphinx_copybutton",
               "myst_nb",]
 
+# Add any paths that contain templates here, relative to this directory.
+templates_path = ["_templates"]
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
@@ -81,18 +84,18 @@ napoleon_numpy_docstring = True
 napoleon_use_param = False
 napoleon_use_ivar = False
 napoleon_use_rtype = False
-add_module_names = False  #
+add_module_names = False  #  If true, the current module name will be prepended to all description
 
 templates_path = ['_templates']
 exclude_patterns = []
 
-nbsphinx_execute = 'examples/**/*.ipynb'
-nbsphinx_execute_arguments = [
-    "--ExecutePreprocessor.timeout=600",
-    "--ExecutePreprocessor.kernel_name=biotuner",
-    "--ExecutePreprocessor.allow_errors=True",
-    "--ExecutePreprocessor.interrupt_on_timeout=True",
-]
+# nbsphinx_execute = 'examples/**/*.ipynb'
+# nbsphinx_execute_arguments = [
+#     "--ExecutePreprocessor.timeout=600",
+#     "--ExecutePreprocessor.kernel_name=biotuner",
+#     "--ExecutePreprocessor.allow_errors=True",
+#     "--ExecutePreprocessor.interrupt_on_timeout=True",
+# ]
 
 # -- Options for myst_nb ---------------------------------------------------
 nb_execution_mode = "force"
@@ -131,5 +134,6 @@ latex_elements = {
     \renewcommand{\cftaftertoctitle}{\hfill}
     ''',
 }
+html_static_path = ["_static"]
 
-#sphinx-build -b html docs/source/ _build/html/
+#sphinx-build -b html docs docs/_build/html
