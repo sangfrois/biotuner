@@ -43,7 +43,7 @@ You can navigate to the different sections using the left panel.
    :titlesonly:
 
    introduction
-   installation
+   getting_started
    cite_us
    examples/index
    api/index
