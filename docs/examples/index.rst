@@ -6,31 +6,38 @@
 Examples
 ##########
 
-Harmonicity
-============
-
+Science
+=======
 .. toctree::
    :maxdepth: 2
 
+   biotuner/biotuner_MNE
+   peaks_extraction/peaks_extraction
    harmonicity_metrics/harmonicity_metrics
-   harmonic_connectivity/harmonic_connectivity
 
-Tuning 
+Music
 ======
+
+Tuning
+------
 .. toctree::
    :maxdepth: 2
    
-   tuning_construction/tuning_construction
+   scale_construction/scale_construction
+   spectral_chords/spectral_chords
+
 
 Rhythm
-======
+------
 .. toctree::
    :maxdepth: 2
 
    rhythm_construction/rhythm_construction
 
-Colors
-======
+Coupling
+---------
 .. toctree::
-   :maxdepth: 2 
-   biowavelength/biowavelength
+   :maxdepth: 2
+
+   phase_amplitude_coupling/phase_amplitude_coupling
+

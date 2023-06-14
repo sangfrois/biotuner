@@ -13,12 +13,13 @@
 Home
 =====
 
+Welcome to **Biotuner**'s documentation where you can learn about computational tools derived from 
+music theory and neurophysiology to develop novel ways to analyze, 
+but also use electrophysiological signals as a source of musical or visual composition.
+
 .. raw:: html
 
    <div style="background-image: url(path/to/your/image.jpg); background-size: cover;">
-       Welcome to **Biotuner**'s documentation where you can learn about computational tools derived from 
-       music theory and neurophysiology to develop novel ways to analyze, 
-       but also use electrophysiological signals as a source of musical or visual composition.
    </div>
 
 .. seealso::
@@ -29,11 +30,13 @@ Home
 The documentation covers installation instructions, the API, as well as notebooks that show
 you how to extract meaningful harmonic information from brain signals, and use the visualization methods of the toolbox.
 It is for scientists and artists alike.
+
 It is constructed in an open-ended manner to allow for the addition of new methods and tools
 for extended signal support (e.g. cardiac signals and plant signals).
 
 
 You can navigate to the different sections using the left panel.
+
 .. toctree::
    :maxdepth: 1
    :caption: Menu:
