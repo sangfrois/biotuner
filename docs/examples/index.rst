@@ -14,6 +14,7 @@ Science
    biotuner/biotuner_MNE
    peaks_extraction/peaks_extraction
    harmonicity_metrics/harmonicity_metrics
+   harmonic_spectum/harmonic_spectrum
 
 Music
 ======
@@ -25,6 +26,7 @@ Tuning
    
    scale_construction/scale_construction
    spectral_chords/spectral_chords
+   harmonic_spectrum/harmonic_spectrum
 
 
 Rhythm
