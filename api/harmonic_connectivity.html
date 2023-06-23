@@ -429,6 +429,359 @@ title="Print to PDF"
 <h1>Harmonic connectivity<a class="headerlink" href="#harmonic-connectivity" title="Permalink to this headline">#</a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<span class="target" id="module-biotuner.harmonic_connectivity"></span><dl class="py class">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.harmonic_connectivity">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">harmonic_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peaks_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'EMD'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_harm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">harm_function</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'mult'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_peaks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#harmonic_connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.harmonic_connectivity" title="Permalink to this definition">#</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class used to compute harmonicity metrics
+between pairs of sensors.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.harmonic_connectivity.sf">
+<span class="sig-name descname"><span class="pre">sf</span></span><a class="headerlink" href="#biotuner.harmonic_connectivity.harmonic_connectivity.sf" title="Permalink to this definition">#</a></dt>
+<dd><p>Initializing arguments for peak extraction</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.harmonic_connectivity.compute_harm_connectivity">
+<span class="sig-name descname"><span class="pre">compute_harm_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'harmsim'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'_'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FREQ_BANDS</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#harmonic_connectivity.compute_harm_connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.harmonic_connectivity.compute_harm_connectivity" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the harmonic connectivity matrix between electrodes.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul>
+<li><p><strong>metric</strong> (<em>str, optional</em>) – The metric to use for computing harmonic connectivity. Default is ‘harmsim’.
+Possible values are:</p>
+<ul class="simple">
+<li><p>‘harmsim’: computes the harmonic similarity between each pair of peaks from the two electrodes.</p></li>
+</ul>
+<p>It calculates the ratio between each pair of peaks and computes the mean harmonic similarity.</p>
+<ul class="simple">
+<li><p>‘euler’: computes the Euler’s totient function on the concatenated peaks of the two electrodes.</p></li>
+</ul>
+<p>It provides a measure of the number of positive integers that are relatively prime to the concatenated peaks.</p>
+<ul class="simple">
+<li><p>‘harm_fit’: computes the number of common harmonics between each pair of peaks from the two electrodes.</p></li>
+</ul>
+<p>It evaluates the harmonic fit between each peak pair and counts the number of common harmonics.</p>
+<ul class="simple">
+<li><p>‘subharm_tension’: computes the tension between subharmonics of two electrodes.</p></li>
+</ul>
+<p>It evaluates the tension between subharmonics of the two electrodes by comparing the subharmonics and their ratios.</p>
+<ul class="simple">
+<li><p>‘RRCi’: computes the Rhythmic Ratio Coupling with Imaginary Component (RRCi) metric between each pair of</p></li>
+</ul>
+<p>peaks from the two electrodes, using a bandwidth of 2 Hz and a max_denom of 16. This metric calculates the
+imaginary part of the complex phase differences between two filtered signals, accounting for volume conduction.
+A higher absolute value of the imaginary part indicates stronger phase coupling while being less sensitive
+to volume conduction.</p>
+<ul class="simple">
+<li><p>‘wPLI_crossfreq’: computes the weighted Phase Lag Index (wPLI) for cross-frequency coupling between each pair</p></li>
+</ul>
+<p>of peaks from the two electrodes. The wPLI measures the phase synchronization between two signals, with a value
+close to 0 indicating no synchronization and a value close to 1 indicating perfect synchronization.</p>
+<ul class="simple">
+<li><p>‘wPLI_multiband’: computes the weighted Phase Lag Index (wPLI) for multiple frequency bands between the two electrodes.</p></li>
+</ul>
+<p>It calculates wPLI for each frequency band and returns an array of wPLI values for the defined frequency bands.</p>
+<ul class="simple">
+<li><p>‘MI’: computes the Mutual Information (MI) between the instantaneous phases of each pair of peaks from the two electrodes.</p></li>
+</ul>
+<p>MI is a measure of the dependence between the two signals, with a higher value indicating a stronger relationship.</p>
+<ul class="simple">
+<li><p>‘MI_spectral’: computes the spectral Mutual Information (MI) between the two electrodes for each pair of peaks.</p></li>
+</ul>
+<p>It evaluates the MI for the concatenated peaks and returns the average MI value for the pairs of peaks.</p>
+</li>
+<li><p><strong>delta_lim</strong> (<em>int, optional</em>) – The delta limit for the subharmonic tension metric. Default is 20.</p></li>
+<li><p><strong>save</strong> (<em>bool, optional</em>) – Whether to save the connectivity matrix. Default is False.</p></li>
+<li><p><strong>savename</strong> (<em>str, optional</em>) – The name to use when saving the connectivity matrix. Default is ‘_’.</p></li>
+<li><p><strong>graph</strong> (<em>bool, optional</em>) – Whether to display a heatmap of the connectivity matrix. Default is True.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>conn_matrix</strong> (<em>numpy.ndarray</em>) – The harmonic connectivity matrix between electrodes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.harmonic_connectivity.compute_time_resolved_harm_connectivity">
+<span class="sig-name descname"><span class="pre">compute_time_resolved_harm_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nIMFs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'harmsim'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#harmonic_connectivity.compute_time_resolved_harm_connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.harmonic_connectivity.compute_time_resolved_harm_connectivity" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the time-resolved harmonic connectivity matrix between electrodes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>numpy.ndarray</em>) – Input data with shape (num_electrodes, numDataPoints)</p></li>
+<li><p><strong>sf</strong> (<em>int</em>) – Sampling frequency</p></li>
+<li><p><strong>nIMFs</strong> (<em>int</em>) – Number of intrinsic mode functions (IMFs) to consider.</p></li>
+<li><p><strong>metric</strong> (<em>str, optional</em>) – The metric to use for computing harmonic connectivity. Default is ‘harmsim’.</p></li>
+<li><p><strong>delta_lim</strong> (<em>int, optional</em>) – The delta limit for the subharmonic tension metric. Default is 20.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>connectivity_matrices</strong> (<em>numpy.ndarray</em>) – Time-resolved harmonic connectivity matrices with shape (IMFs, numDataPoints, electrodes, electrodes).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.harmonic_connectivity.transitional_connectivity">
+<span class="sig-name descname"><span class="pre">transitional_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'win_overlap'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">20</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_trans_harm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#harmonic_connectivity.transitional_connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.harmonic_connectivity.transitional_connectivity" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute the transitional connectivity between electrodes using transitional harmony
+and temporal correlation with False Discovery Rate (FDR) correction.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>numpy.ndarray</em>) – Multichannel EEG data with shape (n_electrodes, n_timepoints).</p></li>
+<li><p><strong>sf</strong> (<em>float</em>) – Sampling frequency of the EEG data in Hz.</p></li>
+<li><p><strong>mode</strong> (<em>str, optional, default=’win_overlap’</em>) – The mode to compute the transitional harmony. Default is ‘win_overlap’.</p></li>
+<li><p><strong>overlap</strong> (<em>int, optional, default=10</em>) – The percentage of overlap between consecutive windows when computing
+the transitional harmony. Default is 10.</p></li>
+<li><p><strong>delta_lim</strong> (<em>int, optional, default=20</em>) – The maximum allowed frequency change (delta frequency) between two
+consecutive peaks in Hz. Default is 20.</p></li>
+<li><p><strong>graph</strong> (<em>bool, optional, default=False</em>) – If True, it will plot the graph of the transitional harmony. Default is False.</p></li>
+<li><p><strong>n_trans_harm</strong> (<em>int, optional, default=3</em>) – Number of transitional harmonics to compute. Default is 3.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>conn_mat</strong> (<em>numpy.ndarray</em>) – Connectivity matrix of shape (n_electrodes, n_electrodes) representing
+the transitional connectivity between electrodes.</p></li>
+<li><p><strong>pval_mat</strong> (<em>numpy.ndarray</em>) – P-value matrix of shape (n_electrodes, n_electrodes) with FDR-corrected
+p-values for the computed connectivity values.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This function computes the transitional connectivity between electrodes by
+first calculating the transitional harmony for each electrode and then
+computing the temporal correlation between the transitional harmonies with
+FDR correction for multiple comparisons.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.harmonic_connectivity.plot_conn_matrix">
+<span class="sig-name descname"><span class="pre">plot_conn_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">conn_matrix</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#harmonic_connectivity.plot_conn_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.harmonic_connectivity.plot_conn_matrix" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.harmonic_connectivity.compute_harmonic_spectrum_connectivity">
+<span class="sig-name descname"><span class="pre">compute_harmonic_spectrum_connectivity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sf</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noverlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_law_remove</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_peaks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'harmsim'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_harms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_notes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoothness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoothness_harm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">savename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'harmonic_spectrum_connectivity.png'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#harmonic_connectivity.compute_harmonic_spectrum_connectivity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.harmonic_connectivity.compute_harmonic_spectrum_connectivity" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.harmonic_connectivity.get_harm_spectrum_metric_matrix">
+<span class="sig-name descname"><span class="pre">get_harm_spectrum_metric_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">metric</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#harmonic_connectivity.get_harm_spectrum_metric_matrix"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.harmonic_connectivity.get_harm_spectrum_metric_matrix" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.wPLI_crossfreq">
+<span class="sig-name descname"><span class="pre">wPLI_crossfreq</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#wPLI_crossfreq"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.wPLI_crossfreq" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the weighted phase lag index (wPLI) between two signals in specified frequency bands, centered around
+provided peak frequencies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal1</strong> (<em>ndarray</em>) – First signal in time series.</p></li>
+<li><p><strong>signal2</strong> (<em>ndarray</em>) – Second signal in time series.</p></li>
+<li><p><strong>peak1</strong> (<em>float</em>) – Center of the frequency band for the first signal.</p></li>
+<li><p><strong>peak2</strong> (<em>float</em>) – Center of the frequency band for the second signal.</p></li>
+<li><p><strong>sf</strong> (<em>float</em>) – Sampling frequency.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>wPLI</strong> (<em>float</em>) – Weighted phase lag index between two signals in specified frequency bands.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">signal1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">peak1</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">peak2</span> <span class="o">=</span> <span class="mf">20.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sf</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wPLI</span> <span class="o">=</span> <span class="n">wPLI_crossfreq</span><span class="p">(</span><span class="n">signal1</span><span class="p">,</span> <span class="n">signal2</span><span class="p">,</span> <span class="n">peak1</span><span class="p">,</span> <span class="n">peak2</span><span class="p">,</span> <span class="n">sf</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.wPLI_multiband">
+<span class="sig-name descname"><span class="pre">wPLI_multiband</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_bands</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sf</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#wPLI_multiband"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.wPLI_multiband" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the weighted phase lag index (wPLI) between two signals for multiple frequency bands.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal1</strong> (<em>ndarray</em>) – First signal in time series.</p></li>
+<li><p><strong>signal2</strong> (<em>ndarray</em>) – Second signal in time series.</p></li>
+<li><p><strong>freq_bands</strong> (<em>list of tuple</em>) – List of frequency bands. Each band is represented as a tuple (lowcut, highcut).</p></li>
+<li><p><strong>sf</strong> (<em>float</em>) – Sampling frequency.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>wPLI_values</strong> (<em>list of float</em>) – List of wPLI values for each frequency band.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">signal1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">freq_bands</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">70</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sf</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">wPLI_values</span> <span class="o">=</span> <span class="n">wPLI_multiband</span><span class="p">(</span><span class="n">signal1</span><span class="p">,</span> <span class="n">signal2</span><span class="p">,</span> <span class="n">freq_bands</span><span class="p">,</span> <span class="n">sf</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.compute_mutual_information">
+<span class="sig-name descname"><span class="pre">compute_mutual_information</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">phase1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">num_bins</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#compute_mutual_information"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.compute_mutual_information" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.MI_spectral">
+<span class="sig-name descname"><span class="pre">MI_spectral</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_freq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">peak_pairs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wavelet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'cmor'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#MI_spectral"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.MI_spectral" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.cross_frequency_rrci">
+<span class="sig-name descname"><span class="pre">cross_frequency_rrci</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfreq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_peak1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_peak2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bandwidth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_denom</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#cross_frequency_rrci"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.cross_frequency_rrci" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the Rhythmic Ratio Coupling Index (RRCI) between two signals for cross-frequency.</p>
+<p>The function first calculates the rhythmic ratio between two peak frequencies. It then filters
+the two input signals around a frequency band centered on their respective peak frequencies.
+Finally, it calculates the rhythmic ratio coupling index (RRCI) for these filtered signals.
+The RRCI is a measure of how much the rhythms of the two signals, in terms of their phase information,
+are coupled across different frequencies. In other words, it provides a measure of phase-to-phase
+coupling across these frequencies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal1</strong> (<em>ndarray</em>) – First signal in time series.</p></li>
+<li><p><strong>signal2</strong> (<em>ndarray</em>) – Second signal in time series.</p></li>
+<li><p><strong>sfreq</strong> (<em>float</em>) – Sampling frequency.</p></li>
+<li><p><strong>freq_peak1</strong> (<em>float</em>) – Peak frequency for the first signal.</p></li>
+<li><p><strong>freq_peak2</strong> (<em>float</em>) – Peak frequency for the second signal.</p></li>
+<li><p><strong>bandwidth</strong> (<em>float, default=1</em>) – Frequency bandwidth for filtering the signals.</p></li>
+<li><p><strong>max_denom</strong> (<em>int, default=50</em>) – The maximum denominator for the rhythmic ratio.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>rrci</strong> (<em>float</em>) – Rhythmic Ratio Coupling Index between the two signals.</p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">signal1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">signal2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5000</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sfreq</span> <span class="o">=</span> <span class="mf">100.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rrci</span> <span class="o">=</span> <span class="n">cross_frequency_rrci</span><span class="p">(</span><span class="n">signal1</span><span class="p">,</span> <span class="n">signal2</span><span class="p">,</span> <span class="n">sfreq</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.compute_rhythmic_ratio">
+<span class="sig-name descname"><span class="pre">compute_rhythmic_ratio</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">freq1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_denom</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#compute_rhythmic_ratio"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.compute_rhythmic_ratio" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.rhythmic_ratio_coupling_imaginary">
+<span class="sig-name descname"><span class="pre">rhythmic_ratio_coupling_imaginary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rhythmic_ratio</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sfreq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_band1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">freq_band2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#rhythmic_ratio_coupling_imaginary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.rhythmic_ratio_coupling_imaginary" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the Imaginary part of Rhythmic Ratio Coupling between two signals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>signal1</strong> (<em>ndarray</em>) – First signal in time series.</p></li>
+<li><p><strong>signal2</strong> (<em>ndarray</em>) – Second signal in time series.</p></li>
+<li><p><strong>rhythmic_ratio</strong> (<em>tuple</em>) – Rhythmic ratio (numerator, denominator).</p></li>
+<li><p><strong>sfreq</strong> (<em>float</em>) – Sampling frequency.</p></li>
+<li><p><strong>freq_band1</strong> (<em>tuple</em>) – Frequency band for the first signal (lowcut, highcut).</p></li>
+<li><p><strong>freq_band2</strong> (<em>tuple</em>) – Frequency band for the second signal (lowcut, highcut).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>imaginary_part</strong> (<em>float</em>) – Imaginary part of the Rhythmic Ratio Coupling.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.HilbertHuang1D_nopeaks">
+<span class="sig-name descname"><span class="pre">HilbertHuang1D_nopeaks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nIMFs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_freq</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">45</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bin_spread</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'log'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smooth_sigma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#HilbertHuang1D_nopeaks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.HilbertHuang1D_nopeaks" title="Permalink to this definition">#</a></dt>
+<dd><p>The Hilbert-Huang transform provides a description of how the energy
+or power within a signal is distributed across frequency.
+The distributions are based on the instantaneous frequency and
+amplitude of a signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>array (numDataPoints,)</em>) – Single time series.</p></li>
+<li><p><strong>sf</strong> (<em>int</em>) – Sampling frequency.</p></li>
+<li><p><strong>graph</strong> (<em>bool, default=False</em>) – Defines if a graph is generated.</p></li>
+<li><p><strong>nIMFs</strong> (<em>int, default=5</em>) – Number of intrinsic mode functions (IMFs) to keep when
+Empirical Mode Decomposition (EMD) is computed.</p></li>
+<li><p><strong>min_freq</strong> (<em>float, default=1</em>) – Minimum frequency to consider.</p></li>
+<li><p><strong>max_freq</strong> (<em>float, default=80</em>) – Maximum frequency to consider.</p></li>
+<li><p><strong>precision</strong> (<em>float, default=0.1</em>) – Value in Hertz corresponding to the minimal step between two
+frequency bins.</p></li>
+<li><p><strong>bin_spread</strong> (<em>str, default=’log’</em>) –</p>
+<ul>
+<li><p>‘linear’</p></li>
+<li><p>‘log’</p></li>
+</ul>
+</li>
+<li><p><strong>smooth_sigma</strong> (<em>float, default=None</em>) – Sigma value for gaussian smoothing.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>IF</strong> (<em>array (numDataPoints,nIMFs)</em>) – instantaneous frequencies associated with each IMF.</p></li>
+<li><p><strong>IP</strong> (<em>array (numDataPoints,nIMFs)</em>) – instantaneous power associated with each IMF.</p></li>
+<li><p><strong>IA</strong> (<em>array (numDataPoints,nIMFs)</em>) – instantaneous amplitude associated with each IMF.</p></li>
+<li><p><strong>spec</strong> (<em>array (nIMFs, nbins)</em>) – Power associated with all bins for each IMF</p></li>
+<li><p><strong>bins</strong> (<em>array (nIMFs, nbins)</em>) – Frequency bins for each IMF</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.EMD_time_resolved_harmonicity">
+<span class="sig-name descname"><span class="pre">EMD_time_resolved_harmonicity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">time_series1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_series2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sf</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nIMFs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'harmsim'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#EMD_time_resolved_harmonicity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.EMD_time_resolved_harmonicity" title="Permalink to this definition">#</a></dt>
+<dd><p>Computes the harmonicity between the instantaneous frequencies (IF) for each
+point in time between all pairs of corresponding intrinsic mode functions (IMFs).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>time_series1</strong> (<em>array (numDataPoints,)</em>) – First time series.</p></li>
+<li><p><strong>time_series2</strong> (<em>array (numDataPoints,)</em>) – Second time series.</p></li>
+<li><p><strong>sf</strong> (<em>int</em>) – Sampling frequency.</p></li>
+<li><p><strong>nIMFs</strong> (<em>int, default=5</em>) – Number of intrinsic mode functions (IMFs) to consider.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>harmonicity</strong> (<em>array (numDataPoints, nIMFs)</em>) – Harmonicity values for each pair of corresponding IMFs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.temporal_correlation_fdr">
+<span class="sig-name descname"><span class="pre">temporal_correlation_fdr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#temporal_correlation_fdr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.temporal_correlation_fdr" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute the temporal correlation for each pair of electrodes and output a connectivity matrix
+and a matrix of FDR-corrected p-values.</p>
+<p>Args:
+data (array): An array of shape (electrodes, samples) containing the electrode recordings.</p>
+<p>Returns:
+connectivity_matrix (array): A connectivity matrix of shape (electrodes, electrodes) with the temporal correlation for each pair of electrodes.
+fdr_corrected_pvals (array): A matrix of FDR-corrected p-values of shape (electrodes, electrodes).</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="biotuner.harmonic_connectivity.compute_cross_spectrum_harmonicity">
+<span class="sig-name descname"><span class="pre">compute_cross_spectrum_harmonicity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">signal1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">signal2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">precision_hz</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmax</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">noverlap</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">44100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">power_law_remove</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_peaks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'harmsim'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_harms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">delta_lim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_notes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoothness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">smoothness_harm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">phase_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_fig</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">save_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'harmonic_spectrum_connectivity.png'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/biotuner/harmonic_connectivity.html#compute_cross_spectrum_harmonicity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#biotuner.harmonic_connectivity.compute_cross_spectrum_harmonicity" title="Permalink to this definition">#</a></dt>
+<dd></dd></dl>
+
 </div>
 
 

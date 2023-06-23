@@ -533,22 +533,8 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_object</span> <span class="kn">import</span> <span class="n">compute_biotuner</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">time</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">warnings</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">biotuner</span><span class="o">/</span><span class="n">biotuner</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Inside of __init__.py</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_object</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_functions</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;biotuner.biotuner_functions&#39;
+<img alt="../../_images/spectral_chords_3_0.png" src="../../_images/spectral_chords_3_0.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 640x480 with 0 Axes&gt;
 </pre></div>
 </div>
 </div>
@@ -697,8 +683,24 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pygame 2.1.2 (SDL 2.0.18, Python 3.8.15)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pygame 2.1.2 (SDL 2.0.16, Python 3.10.8)
 Hello from the pygame community. https://www.pygame.org/contribute.html
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">error</span><span class="g g-Whitespace">                                     </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">7</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_utils</span> <span class="kn">import</span> <span class="n">listen_chords</span>
+<span class="ne">----&gt; </span><span class="mi">2</span> <span class="n">listen_chords</span><span class="p">(</span><span class="n">chords_ratios</span><span class="p">[:],</span> <span class="n">mult</span><span class="o">=</span><span class="mi">40</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="nn">File ~/git/biotuner/biotuner/biotuner_utils.py:1274,</span> in <span class="ni">listen_chords</span><span class="nt">(chords, mult, duration)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1272</span>     <span class="n">pygame_lib</span> <span class="o">=</span> <span class="n">pygame</span>   
+<span class="g g-Whitespace">   </span><span class="mi">1273</span> <span class="n">pygame_lib</span><span class="o">.</span><span class="n">init</span><span class="p">()</span>
+<span class="ne">-&gt; </span><span class="mi">1274</span> <span class="n">pygame_lib</span><span class="o">.</span><span class="n">mixer</span><span class="o">.</span><span class="n">init</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="mi">44100</span><span class="p">,</span> <span class="n">size</span><span class="o">=-</span><span class="mi">16</span><span class="p">,</span> <span class="n">channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">buffer</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1275</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">chords</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1276</span>     <span class="n">hz</span> <span class="o">=</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">mult</span>  <span class="c1"># The fundamental frequency</span>
+
+<span class="ne">error</span>: Audio target &#39;directsound&#39; not available
 </pre></div>
 </div>
 </div>

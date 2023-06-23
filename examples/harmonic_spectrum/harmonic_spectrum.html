@@ -586,26 +586,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">biotuner.harmonic_spectrum</span> <span class="kn">import</span> <span class="n">compute_global_harmonicity</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">harm_spectrum_df</span> <span class="o">=</span> <span class="n">compute_global_harmonicity</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="n">fs</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span>                                              <span class="n">noverlap</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">power_law_remove</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">n_peaks</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">plot</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-<span class="g g-Whitespace">      </span><span class="mi">6</span>                                              <span class="n">smoothness</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;harmsim&#39;</span><span class="p">,</span> <span class="n">delta_lim</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">smoothness_harm</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
-<span class="g g-Whitespace">      </span><span class="mi">7</span>                                              <span class="n">n_harms</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">phase_mode</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">biotuner</span><span class="o">/</span><span class="n">biotuner</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Inside of __init__.py</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_object</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_functions</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;biotuner.biotuner_functions&#39;
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/franc/miniconda3/envs/biotuner/lib/python3.10/site-packages/scipy/signal/_spectral_py.py:1961: UserWarning: nperseg = 6666 is greater than input length  = 4000, using nperseg = 4000
+  warnings.warn(&#39;nperseg = {0:d} is greater than input length &#39;
 </pre></div>
 </div>
+<img alt="../../_images/harmonic_spectrum_2_1.png" src="../../_images/harmonic_spectrum_2_1.png" />
 </div>
 </div>
 <div class="section" id="relation-between-harmonicity-and-phase-coupling">
@@ -665,8 +650,72 @@ for different type of signals.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing harmonic spectrum: 100%|██████████| 100/100 [02:32&lt;00:00,  1.52s/it]
-Computing harmonic spectrum: 100%|██████████| 100/100 [02:18&lt;00:00,  1.39s/it]
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing harmonic spectrum:   0%|                                                                       | 0/100 [00:00&lt;?, ?it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing harmonic spectrum:   8%|█████                                                          | 8/100 [00:00&lt;00:03, 24.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing harmonic spectrum:   8%|█████                                                          | 8/100 [00:19&lt;00:03, 24.09it/s]
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Computing harmonic spectrum:  16%|█████████▉                                                    | 16/100 [00:29&lt;03:04,  2.20s/it]
+</pre></div>
+</div>
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">KeyboardInterrupt</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">4</span><span class="p">],</span> <span class="n">line</span> <span class="mi">7</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="c1"># take 100 epochs of the EEG example data</span>
+<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="n">brain_data</span> <span class="o">=</span> <span class="n">data</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">7</span> <span class="n">df_brain</span> <span class="o">=</span> <span class="n">compute_harmonic_spectrum</span><span class="p">(</span><span class="n">brain_data</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">df_random</span> <span class="o">=</span> <span class="n">compute_harmonic_spectrum</span><span class="p">(</span><span class="n">data_rnd</span><span class="p">)</span>
+
+<span class="nn">Cell In[3], line 24,</span> in <span class="ni">compute_harmonic_spectrum</span><span class="nt">(signal_list, n_jobs, **kwargs)</span>
+<span class="g g-Whitespace">     </span><span class="mi">22</span> <span class="k">def</span> <span class="nf">compute_harmonic_spectrum</span><span class="p">(</span><span class="n">signal_list</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">24</span>     <span class="n">df_list</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)(</span>
+<span class="g g-Whitespace">     </span><span class="mi">25</span>         <span class="n">delayed</span><span class="p">(</span><span class="n">compute_harmonic_spectrum_parallel</span><span class="p">)(</span><span class="n">i</span><span class="p">,</span> <span class="n">signal_list</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> 
+<span class="nn">     26         for i</span> in <span class="ni">tqdm(range(len</span><span class="nt">(signal_list)), desc=&quot;Computing harmonic spectrum&quot;)</span>
+<span class="g g-Whitespace">     </span><span class="mi">27</span>     <span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">29</span>     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">31</span>     <span class="k">return</span> <span class="n">df</span>
+
+<span class="nn">File ~/miniconda3/envs/biotuner/lib/python3.10/site-packages/joblib/parallel.py:1098,</span> in <span class="ni">Parallel.__call__</span><span class="nt">(self, iterable)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1095</span>     <span class="bp">self</span><span class="o">.</span><span class="n">_iterating</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="g g-Whitespace">   </span><span class="mi">1097</span> <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="o">.</span><span class="n">retrieval_context</span><span class="p">():</span>
+<span class="ne">-&gt; </span><span class="mi">1098</span>     <span class="bp">self</span><span class="o">.</span><span class="n">retrieve</span><span class="p">()</span>
+<span class="g g-Whitespace">   </span><span class="mi">1099</span> <span class="c1"># Make sure that we get a last message telling us we are done</span>
+<span class="g g-Whitespace">   </span><span class="mi">1100</span> <span class="n">elapsed_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_start_time</span>
+
+<span class="nn">File ~/miniconda3/envs/biotuner/lib/python3.10/site-packages/joblib/parallel.py:975,</span> in <span class="ni">Parallel.retrieve</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">    </span><span class="mi">973</span> <span class="k">try</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">974</span>     <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_backend</span><span class="p">,</span> <span class="s1">&#39;supports_timeout&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">):</span>
+<span class="ne">--&gt; </span><span class="mi">975</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_output</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">timeout</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">976</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">977</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_output</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">job</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+
+<span class="nn">File ~/miniconda3/envs/biotuner/lib/python3.10/site-packages/joblib/_parallel_backends.py:567,</span> in <span class="ni">LokyBackend.wrap_future_result</span><span class="nt">(future, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">564</span><span class="w"> </span><span class="sd">&quot;&quot;&quot;Wrapper for Future.result to implement the same behaviour as</span>
+<span class="g g-Whitespace">    </span><span class="mi">565</span><span class="sd"> AsyncResults.get from multiprocessing.&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">    </span><span class="mi">566</span> <span class="k">try</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">567</span>     <span class="k">return</span> <span class="n">future</span><span class="o">.</span><span class="n">result</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">568</span> <span class="k">except</span> <span class="n">CfTimeoutError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">569</span>     <span class="k">raise</span> <span class="ne">TimeoutError</span> <span class="kn">from</span> <span class="nn">e</span>
+
+<span class="nn">File ~/miniconda3/envs/biotuner/lib/python3.10/concurrent/futures/_base.py:453,</span> in <span class="ni">Future.result</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">450</span> <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="o">==</span> <span class="n">FINISHED</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">451</span>     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__get_result</span><span class="p">()</span>
+<span class="ne">--&gt; </span><span class="mi">453</span> <span class="bp">self</span><span class="o">.</span><span class="n">_condition</span><span class="o">.</span><span class="n">wait</span><span class="p">(</span><span class="n">timeout</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">455</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_state</span> <span class="ow">in</span> <span class="p">[</span><span class="n">CANCELLED</span><span class="p">,</span> <span class="n">CANCELLED_AND_NOTIFIED</span><span class="p">]:</span>
+<span class="g g-Whitespace">    </span><span class="mi">456</span>     <span class="k">raise</span> <span class="n">CancelledError</span><span class="p">()</span>
+
+<span class="nn">File ~/miniconda3/envs/biotuner/lib/python3.10/threading.py:320,</span> in <span class="ni">Condition.wait</span><span class="nt">(self, timeout)</span>
+<span class="g g-Whitespace">    </span><span class="mi">318</span> <span class="k">try</span><span class="p">:</span>    <span class="c1"># restore state no matter what (e.g., KeyboardInterrupt)</span>
+<span class="g g-Whitespace">    </span><span class="mi">319</span>     <span class="k">if</span> <span class="n">timeout</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="ne">--&gt; </span><span class="mi">320</span>         <span class="n">waiter</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+<span class="g g-Whitespace">    </span><span class="mi">321</span>         <span class="n">gotit</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="g g-Whitespace">    </span><span class="mi">322</span>     <span class="k">else</span><span class="p">:</span>
+
+<span class="ne">KeyboardInterrupt</span>: 
 </pre></div>
 </div>
 </div>

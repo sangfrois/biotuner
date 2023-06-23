@@ -777,22 +777,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">line</span> <span class="mi">2</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="kn">import</span> <span class="nn">time</span>
-<span class="ne">----&gt; </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_object</span> <span class="kn">import</span> <span class="n">compute_biotuner</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="c1"># Define frequency bands for peaks_function = &#39;fixed&#39;</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">FREQ_BANDS</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">12</span><span class="p">],</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">],</span> <span class="p">[</span><span class="mi">18</span><span class="p">,</span> <span class="mi">30</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">]]</span> 
-
-<span class="n">File</span> <span class="o">~/</span><span class="n">git</span><span class="o">/</span><span class="n">biotuner</span><span class="o">/</span><span class="n">biotuner</span><span class="o">/</span><span class="fm">__init__</span><span class="o">.</span><span class="n">py</span><span class="p">:</span><span class="mi">3</span>
-<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="c1"># Inside of __init__.py</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_object</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="ne">----&gt; </span><span class="mi">3</span> <span class="kn">from</span> <span class="nn">biotuner.biotuner_functions</span> <span class="kn">import</span> <span class="o">*</span>
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">5</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;biotuner.biotuner_functions&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.001957416534423828
 </pre></div>
 </div>
 </div>
@@ -805,7 +790,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1. ,  6.5,  8. , 17.5, 18.5, 38.5])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([ 1.5,  5. ,  8. , 13. , 19. , 30.5])
 </pre></div>
 </div>
 </div>
@@ -823,18 +808,21 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0405405405405406,
- 1.0571428571428572,
- 1.09375,
- 1.1,
- 1.15625,
- 1.203125,
- 1.2307692307692308,
- 1.3461538461538463,
- 1.4230769230769231,
- 1.4807692307692308,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1.0833333333333333,
+ 1.1730769230769231,
+ 1.1875,
+ 1.2708333333333333,
+ 1.3,
+ 1.3333333333333333,
+ 1.4615384615384615,
+ 1.525,
+ 1.5833333333333333,
+ 1.6,
+ 1.605263157894737,
  1.625,
- 2.0]
+ 1.6666666666666667,
+ 1.9,
+ 1.90625]
 </pre></div>
 </div>
 </div>
@@ -849,9 +837,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of extended peaks :  11
-[1.04 1.06 1.09 1.1  1.16 1.2  1.23 1.25 1.3  1.35 1.38 1.41 1.42 1.48
- 1.49 1.5  1.62 1.85 2.  ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of extended peaks :  16
+[1.01 1.02 1.03 1.05 1.07 1.08 1.09 1.15 1.17 1.19 1.2  1.23 1.25 1.26
+ 1.27 1.29 1.3  1.31 1.33 1.35 1.37 1.46 1.48 1.5  1.52 1.54 1.56 1.58
+ 1.6  1.61 1.62 1.67 1.7  1.71 1.73 1.83 1.85 1.88 1.9  1.91 1.93 1.98
+ 2.  ]
 </pre></div>
 </div>
 </div>
@@ -885,10 +875,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of extended peaks :  14
-[1.083 1.1   1.231 1.25  1.375 1.5   1.625 2.   ]
-Number of extended peaks :  14
-[1.25 1.5  2.  ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of extended peaks :  21
+[1.083 1.125 1.154 1.2   1.231 1.25  1.3   1.333 1.444 1.462 1.5   1.583
+ 1.6   1.625 1.667 1.778 1.875 1.9   2.   ]
+Number of extended peaks :  21
+[1.125 1.2   1.25  1.333 1.5   1.6   1.667 2.   ]
 </pre></div>
 </div>
 </div>
@@ -911,7 +902,7 @@ Number of extended peaks :  14
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of extended peaks :  11
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of extended peaks :  16
 </pre></div>
 </div>
 <img alt="../../_images/scale_construction_17_1.png" src="../../_images/scale_construction_17_1.png" />
@@ -926,9 +917,9 @@ Number of extended peaks :  14
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dissonance curve metrics: {&#39;diss_euler&#39;: &#39;NaN&#39;, &#39;dissonance&#39;: 3.9844954535203048, &#39;diss_harm_sim&#39;: 5.038404472654177, &#39;diss_n_steps&#39;: 10}
-Dissonance curve tuning: [1.0941176470588236, 1.155844155844156, 1.2307692307692308, 1.3461538461538463, 1.4230769230769231, 1.513157894736842, 1.6236559139784945, 1.7719298245614035, 1.85, 2.0]
-Dissonance curve consonant tuning: [1.231 2.   ]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Dissonance curve metrics: {&#39;diss_euler&#39;: &#39;NaN&#39;, &#39;dissonance&#39;: 5.9114886117207055, &#39;diss_harm_sim&#39;: 14.059883388112603, &#39;diss_n_steps&#39;: 18}
+Dissonance curve tuning: [1.0952380952380953, 1.1538461538461537, 1.1868131868131868, 1.2307692307692308, 1.25, 1.2659574468085106, 1.3, 1.3111111111111111, 1.3333333333333333, 1.3970588235294117, 1.4606741573033708, 1.6, 1.6236559139784945, 1.6666666666666667, 1.8450704225352113, 1.8736842105263158, 1.898989898989899, 2.0]
+Dissonance curve consonant tuning: [1.154 1.231 1.25  1.3   1.333 1.6   1.667 2.   ]
 </pre></div>
 </div>
 </div>
@@ -944,7 +935,24 @@ Dissonance curve consonant tuning: [1.231 2.   ]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[93/85, 89/77, 16/13, 35/26, 37/26, 115/76, 151/93, 101/57, 37/20, 2]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[23/21,
+ 15/13,
+ 108/91,
+ 16/13,
+ 5/4,
+ 119/94,
+ 13/10,
+ 59/45,
+ 4/3,
+ 95/68,
+ 130/89,
+ 8/5,
+ 151/93,
+ 5/3,
+ 131/71,
+ 178/95,
+ 188/99,
+ 2]
 </pre></div>
 </div>
 </div>
@@ -981,12 +989,47 @@ Other input types use extended ratios : see biotuner ref.</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of peaks : 5
-Number of extended peaks :  24
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of extended peaks :  20
 </pre></div>
 </div>
-<img alt="../../_images/scale_construction_21_1.png" src="../../_images/scale_construction_21_1.png" />
-<img alt="../../_images/scale_construction_21_2.png" src="../../_images/scale_construction_21_2.png" />
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">TypeError</span><span class="g g-Whitespace">                                 </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">10</span><span class="p">],</span> <span class="n">line</span> <span class="mi">11</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="n">biotuning</span><span class="o">.</span><span class="n">peaks_extension</span><span class="p">(</span><span class="n">method</span> <span class="o">=</span> <span class="s1">&#39;harmonic_fit&#39;</span><span class="p">,</span> <span class="n">harm_function</span> <span class="o">=</span> <span class="s1">&#39;mult&#39;</span><span class="p">,</span>  <span class="n">n_harm</span> <span class="o">=</span> <span class="mi">30</span><span class="p">,</span> 
+<span class="g g-Whitespace">      </span><span class="mi">9</span>                           <span class="n">cons_limit</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ratios_extension</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">10</span> <span class="c1"># compute the harmonic entropy curve as a function of extended ratios increments.</span>
+<span class="ne">---&gt; </span><span class="mi">11</span> <span class="n">biotuning</span><span class="o">.</span><span class="n">compute_harmonic_entropy</span><span class="p">(</span><span class="n">input_type</span> <span class="o">=</span> <span class="s1">&#39;extended_ratios_inc&#39;</span><span class="p">,</span> <span class="n">plot_entropy</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">octave</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">rebound</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+<span class="g g-Whitespace">     </span><span class="mi">12</span>                                    <span class="n">scale_cons_limit</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">sub</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="g g-Whitespace">     </span><span class="mi">14</span> <span class="c1"># compute the harmonic entropy curve as a function of extended ratios harmonics.</span>
+<span class="g g-Whitespace">     </span><span class="mi">15</span> <span class="n">biotuning</span><span class="o">.</span><span class="n">compute_harmonic_entropy</span><span class="p">(</span><span class="n">input_type</span> <span class="o">=</span> <span class="s1">&#39;extended_ratios_harms&#39;</span><span class="p">,</span> <span class="n">plot_entropy</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span> <span class="n">octave</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span> <span class="n">rebound</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> 
+<span class="g g-Whitespace">     </span><span class="mi">16</span>                                    <span class="n">scale_cons_limit</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">,</span> <span class="n">sub</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="nn">File ~/git/biotuner/biotuner/biotuner_object.py:996,</span> in <span class="ni">compute_biotuner.compute_harmonic_entropy</span><span class="nt">(self, input_type, res, spread, plot_entropy, plot_tenney, octave, rebound, sub, scale_cons_limit)</span>
+<span class="g g-Whitespace">    </span><span class="mi">993</span> <span class="k">if</span> <span class="n">scale_cons_limit</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">994</span>     <span class="n">scale_cons_limit</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_cons_limit</span>
+<span class="ne">--&gt; </span><span class="mi">996</span> <span class="n">HE_scale</span><span class="p">,</span> <span class="n">HE</span> <span class="o">=</span> <span class="n">harmonic_entropy</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">997</span>     <span class="n">ratios</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">998</span>     <span class="n">res</span><span class="o">=</span><span class="n">res</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">999</span>     <span class="n">spread</span><span class="o">=</span><span class="n">spread</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1000</span>     <span class="n">plot_entropy</span><span class="o">=</span><span class="n">plot_entropy</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1001</span>     <span class="n">plot_tenney</span><span class="o">=</span><span class="n">plot_tenney</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1002</span>     <span class="n">octave</span><span class="o">=</span><span class="n">octave</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1003</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1004</span> <span class="bp">self</span><span class="o">.</span><span class="n">HE_scale</span> <span class="o">=</span> <span class="n">HE_scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1005</span> <span class="bp">self</span><span class="o">.</span><span class="n">HE_scale_cons</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">consonant_ratios</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1006</span>     <span class="bp">self</span><span class="o">.</span><span class="n">HE_scale</span><span class="p">,</span> <span class="n">scale_cons_limit</span><span class="p">,</span> <span class="n">sub</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">input_type</span><span class="o">=</span><span class="s2">&quot;ratios&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1007</span> <span class="p">)</span>
+
+<span class="nn">File ~/git/biotuner/biotuner/scale_construction.py:704,</span> in <span class="ni">harmonic_entropy</span><span class="nt">(ratios, res, spread, plot_entropy, plot_tenney, octave)</span>
+<span class="g g-Whitespace">    </span><span class="mi">702</span> <span class="n">ratios</span> <span class="o">=</span> <span class="n">numerators</span> <span class="o">/</span> <span class="n">denominators</span>
+<span class="g g-Whitespace">    </span><span class="mi">703</span> <span class="n">bendetti_heights</span> <span class="o">=</span> <span class="n">numerators</span> <span class="o">*</span> <span class="n">denominators</span>
+<span class="ne">--&gt; </span><span class="mi">704</span> <span class="n">tenney_heights</span> <span class="o">=</span> <span class="n">log2</span><span class="p">(</span><span class="n">bendetti_heights</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">706</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">tenney_heights</span><span class="p">)</span>  <span class="c1"># sort by Tenney height</span>
+<span class="g g-Whitespace">    </span><span class="mi">707</span> <span class="n">bendetti_heights</span> <span class="o">=</span> <span class="n">bendetti_heights</span><span class="p">[</span><span class="n">ind</span><span class="p">]</span>
+
+<span class="ne">TypeError</span>: only size-1 arrays can be converted to Python scalars
+</pre></div>
+</div>
 </div>
 </div>
 <div class="cell docutils container">

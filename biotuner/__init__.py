@@ -1,6 +1,5 @@
 # Inside of __init__.py
 from biotuner.biotuner_object import *
-from biotuner.biotuner_functions import *
 import numpy as np
 import pandas as pd
 import scipy
