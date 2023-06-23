@@ -1,0 +1,1334 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Harmonicity Metrics Computation on MNE Epochs File &#8212; Biotuner 0.0.1 documentation</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/example_gallery_styles.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Peaks extraction methods" href="../peaks_extraction/peaks_extraction.html" />
+    <link rel="prev" title="Examples" href="../index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Biotuner 0.0.1 documentation</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Menu:
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../getting_started.html">
+   Getting started with Biotuner
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../cite_us.html">
+   Cite us
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../index.html">
+   Examples
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Harmonicity Metrics Computation on MNE Epochs File
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../peaks_extraction/peaks_extraction.html">
+     Peaks extraction methods
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../harmonicity_metrics/harmonicity_metrics.html">
+     Harmonicity metrics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../harmonic_spectrum/harmonic_spectrum.html">
+     From Spectral Peaks to Harmonic Spectrum Analysis
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../scale_construction/scale_construction.html">
+     Constructing musical tunings with biosignals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../spectral_chords/spectral_chords.html">
+     Deriving spectral chords from biosignals
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../rhythm_construction/rhythm_construction.html">
+     Constructing euclidian rhythms from biotunings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../phase_amplitude_coupling/phase_amplitude_coupling.html">
+     Phase-Amplitude Coupling
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../api/index.html">
+   API
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/biotuner_object.html">
+     Biotuner object
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/metrics.html">
+     Harmonicity Metrics
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+    <label for="toctree-checkbox-4">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/harmonic_spectrum.html">
+     Harmonic spectrum
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+    <label for="toctree-checkbox-5">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/harmonic_connectivity.html">
+     Harmonic connectivity
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+    <label for="toctree-checkbox-6">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/peaks_extension.html">
+     Peaks Extension
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/>
+    <label for="toctree-checkbox-7">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/peaks_extraction.html">
+     Peaks Extraction
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/>
+    <label for="toctree-checkbox-8">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/rhythm_construction.html">
+     Rhythm construction
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/>
+    <label for="toctree-checkbox-9">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/scale_construction.html">
+     Scale construction
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/>
+    <label for="toctree-checkbox-10">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../../api/utils.html">
+     Biotuner utilities
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/>
+    <label for="toctree-checkbox-11">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="simple">
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/examples/biotuner_MNE/biotuner_MNE.ipynb.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Harmonicity Metrics Computation on MNE Epochs File</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <div class="section" id="harmonicity-metrics-computation-on-mne-epochs-file">
+<h1>Harmonicity Metrics Computation on MNE Epochs File<a class="headerlink" href="#harmonicity-metrics-computation-on-mne-epochs-file" title="Permalink to this headline">#</a></h1>
+<p>In this notebook, we demonstrate how to compute harmonicity metrics from an MNE epochs file using the Biotuner library. Harmonicity metrics provide insights into the periodic structure of EEG signals and can be useful for various applications in neuroscience research. Biotuner is a powerful tool for extracting these metrics by analyzing the harmonic architecture of M/EEG data.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import necessary modules</span>
+<span class="kn">import</span> <span class="nn">mne</span>
+<span class="kn">from</span> <span class="nn">mne.datasets</span> <span class="kn">import</span> <span class="n">multimodal</span>
+<span class="kn">from</span> <span class="nn">mne</span> <span class="kn">import</span> <span class="n">make_fixed_length_events</span>
+<span class="kn">from</span> <span class="nn">biotuner.biotuner2d</span> <span class="kn">import</span> <span class="n">biotuner_mne</span>
+
+<span class="c1"># Define the biotuner parameters</span>
+<span class="n">bt_dict</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;peaks_function&#39;</span><span class="p">:</span> <span class="s1">&#39;EMD&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;precision&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;fmin&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="s1">&#39;fmax&#39;</span><span class="p">:</span> <span class="mi">90</span><span class="p">,</span>
+    <span class="s1">&#39;n_peaks&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;harm_thresh&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>
+    <span class="s1">&#39;delta_lim&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Path to the multimodal data</span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="n">multimodal</span><span class="o">.</span><span class="n">data_path</span><span class="p">()</span>
+
+<span class="c1"># Filepath to the multimodal data</span>
+<span class="n">raw_file</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">data_path</span><span class="o">.</span><span class="n">joinpath</span><span class="p">(</span><span class="s1">&#39;multimodal_raw.fif&#39;</span><span class="p">))</span>
+
+<span class="c1"># Suppress output</span>
+<span class="n">mne</span><span class="o">.</span><span class="n">set_log_level</span><span class="p">(</span><span class="s1">&#39;ERROR&#39;</span><span class="p">)</span>
+
+<span class="c1"># Load the raw data</span>
+<span class="n">raw</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">io</span><span class="o">.</span><span class="n">read_raw_fif</span><span class="p">(</span><span class="n">raw_file</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Filter the data</span>
+<span class="n">raw</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">l_freq</span><span class="o">=</span><span class="mf">2.</span><span class="p">,</span> <span class="n">h_freq</span><span class="o">=</span><span class="mf">90.</span><span class="p">)</span>
+
+<span class="c1"># Get the names of the MEG channels</span>
+<span class="n">meg_channels</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">pick_types</span><span class="p">(</span><span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">,</span> <span class="n">meg</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Keep only the first 10 MEG channels</span>
+<span class="n">meg_channels</span> <span class="o">=</span> <span class="n">meg_channels</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span>
+
+<span class="c1"># Update &#39;sf&#39; in the bt_dict</span>
+<span class="n">bt_dict</span><span class="p">[</span><span class="s1">&#39;sf&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">info</span><span class="p">[</span><span class="s1">&#39;sfreq&#39;</span><span class="p">]</span>
+
+<span class="c1"># Create events</span>
+<span class="n">events</span> <span class="o">=</span> <span class="n">make_fixed_length_events</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">duration</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+
+<span class="c1"># Epoch the data</span>
+<span class="n">tmin</span> <span class="o">=</span> <span class="mf">0.0</span>  <span class="c1"># start of each epoch (0s before the trigger)</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mf">2.0</span>  <span class="c1"># end of each epoch (2s after the trigger)</span>
+
+<span class="c1"># Make sure only 10 epochs are created</span>
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">events</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="p">:</span>
+    <span class="n">events</span> <span class="o">=</span> <span class="n">events</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="c1"># Pick only the first 10 MEG channels</span>
+<span class="n">raw</span><span class="o">.</span><span class="n">pick_channels</span><span class="p">([</span><span class="n">raw</span><span class="o">.</span><span class="n">ch_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">meg_channels</span><span class="p">])</span>
+
+<span class="c1"># Epoch the data</span>
+<span class="n">epochs</span> <span class="o">=</span> <span class="n">mne</span><span class="o">.</span><span class="n">Epochs</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">events</span><span class="p">,</span> <span class="n">tmin</span><span class="o">=</span><span class="n">tmin</span><span class="p">,</span> <span class="n">tmax</span><span class="o">=</span><span class="n">tmax</span><span class="p">,</span> <span class="n">baseline</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">preload</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Compute biotuner metrics on epochs file</span>
+<span class="n">bt_df</span> <span class="o">=</span> <span class="n">biotuner_mne</span><span class="p">(</span><span class="n">epochs</span><span class="p">,</span> <span class="n">bt_dict</span><span class="p">,</span> <span class="n">savefile</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">savename</span><span class="o">=</span><span class="s1">&#39;multimodal_raw&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\users\user\github\biotuner\biotuner\metrics.py:659: RuntimeWarning: divide by zero encountered in double_scalars
+  harm_temp.append(1 / delta_norm)
+c:\Users\User\anaconda3\envs\biotuner\lib\site-packages\numpy\lib\function_base.py:380: RuntimeWarning: Mean of empty slice.
+  avg = a.mean(axis)
+c:\Users\User\anaconda3\envs\biotuner\lib\site-packages\numpy\core\_methods.py:189: RuntimeWarning: invalid value encountered in double_scalars
+  ret = ret.dtype.type(ret / rcount)
+c:\users\user\github\biotuner\biotuner\peaks_extraction.py:827: RuntimeWarning: invalid value encountered in true_divide
+  coh /= temp2
+c:\Users\User\anaconda3\envs\biotuner\lib\site-packages\numpy\core\fromnumeric.py:3440: RuntimeWarning: Mean of empty slice.
+  return _methods._mean(a, axis=axis, dtype=dtype,
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bt_df</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>trial</th>
+      <th>electrode</th>
+      <th>peaks_function</th>
+      <th>precision</th>
+      <th>fmin</th>
+      <th>fmax</th>
+      <th>n_peaks</th>
+      <th>harm_thresh</th>
+      <th>delta_lim</th>
+      <th>sf</th>
+      <th>...</th>
+      <th>sum_q_for_all_intervals</th>
+      <th>harm_sim</th>
+      <th>matrix_harm_sim</th>
+      <th>matrix_cons</th>
+      <th>matrix_denom</th>
+      <th>cons</th>
+      <th>tenney</th>
+      <th>harm_fit</th>
+      <th>harmsim</th>
+      <th>subharm_tension</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>52</td>
+      <td>33.76</td>
+      <td>27.408042</td>
+      <td>0.331773</td>
+      <td>3078.000000</td>
+      <td>0.243590</td>
+      <td>2.914161</td>
+      <td>11</td>
+      <td>33.760684</td>
+      <td>[0.040245430660774836]</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>0</td>
+      <td>1</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>28703</td>
+      <td>38.92</td>
+      <td>44.497354</td>
+      <td>0.623413</td>
+      <td>3325.200000</td>
+      <td>0.625000</td>
+      <td>3.035390</td>
+      <td>15</td>
+      <td>38.918388</td>
+      <td>[0.08681323594992725]</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0</td>
+      <td>2</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>14493</td>
+      <td>33.10</td>
+      <td>3.744248</td>
+      <td>0.038370</td>
+      <td>4463.000000</td>
+      <td>0.365224</td>
+      <td>5.114485</td>
+      <td>10</td>
+      <td>33.099289</td>
+      <td>[0.08750497897263645]</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0</td>
+      <td>3</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>373</td>
+      <td>23.85</td>
+      <td>10.532544</td>
+      <td>0.109504</td>
+      <td>61.000000</td>
+      <td>0.351923</td>
+      <td>3.408947</td>
+      <td>12</td>
+      <td>23.846154</td>
+      <td>[0.03407356717408203]</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>4</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>6643025</td>
+      <td>31.47</td>
+      <td>13.313946</td>
+      <td>0.155624</td>
+      <td>3825.750000</td>
+      <td>0.268640</td>
+      <td>6.229364</td>
+      <td>5</td>
+      <td>31.474884</td>
+      <td>[0.1350282792829261]</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0</td>
+      <td>5</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>241</td>
+      <td>24.70</td>
+      <td>11.466942</td>
+      <td>0.119611</td>
+      <td>47.333333</td>
+      <td>0.440909</td>
+      <td>3.312544</td>
+      <td>12</td>
+      <td>24.696970</td>
+      <td>[0.03335222463092775]</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>0</td>
+      <td>6</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>518689</td>
+      <td>12.02</td>
+      <td>8.476437</td>
+      <td>0.090718</td>
+      <td>3956.666667</td>
+      <td>0.343832</td>
+      <td>5.180535</td>
+      <td>11</td>
+      <td>12.015883</td>
+      <td>[0.11689849920521807]</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>0</td>
+      <td>7</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>29897</td>
+      <td>36.77</td>
+      <td>11.390282</td>
+      <td>0.119260</td>
+      <td>5422.500000</td>
+      <td>0.433333</td>
+      <td>4.150084</td>
+      <td>9</td>
+      <td>36.774950</td>
+      <td>[0.09721535992779774]</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>0</td>
+      <td>8</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>1453</td>
+      <td>21.22</td>
+      <td>13.350769</td>
+      <td>0.146396</td>
+      <td>53.466667</td>
+      <td>0.472394</td>
+      <td>4.368141</td>
+      <td>9</td>
+      <td>21.222480</td>
+      <td>[0.0945973868157042]</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>0</td>
+      <td>9</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>518</td>
+      <td>40.59</td>
+      <td>12.854671</td>
+      <td>0.135105</td>
+      <td>59.000000</td>
+      <td>0.325490</td>
+      <td>3.763756</td>
+      <td>9</td>
+      <td>40.588235</td>
+      <td>[0.08667506229176597]</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1</td>
+      <td>0</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>6294041</td>
+      <td>13.19</td>
+      <td>9.868479</td>
+      <td>0.107444</td>
+      <td>3310.133333</td>
+      <td>0.411584</td>
+      <td>4.694222</td>
+      <td>10</td>
+      <td>13.188127</td>
+      <td>[0.094220521933636]</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>1</td>
+      <td>1</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>83</td>
+      <td>42.68</td>
+      <td>40.753629</td>
+      <td>0.579590</td>
+      <td>2516.533333</td>
+      <td>0.424242</td>
+      <td>3.309644</td>
+      <td>14</td>
+      <td>42.676768</td>
+      <td>[0.0950166640113226]</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1</td>
+      <td>2</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>2663695</td>
+      <td>30.63</td>
+      <td>6.615343</td>
+      <td>0.069626</td>
+      <td>2461.333333</td>
+      <td>0.357101</td>
+      <td>5.246129</td>
+      <td>10</td>
+      <td>30.633896</td>
+      <td>[0.11812990118576759]</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>1</td>
+      <td>3</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>362</td>
+      <td>54.89</td>
+      <td>33.688886</td>
+      <td>0.419370</td>
+      <td>2359.972222</td>
+      <td>0.419048</td>
+      <td>4.273919</td>
+      <td>9</td>
+      <td>54.894180</td>
+      <td>[0.12751767843497627]</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1</td>
+      <td>4</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>7008125</td>
+      <td>13.71</td>
+      <td>8.305882</td>
+      <td>0.088653</td>
+      <td>3880.666667</td>
+      <td>0.378200</td>
+      <td>5.334104</td>
+      <td>10</td>
+      <td>13.711387</td>
+      <td>[0.12551460309881624]</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>1</td>
+      <td>5</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>246</td>
+      <td>35.98</td>
+      <td>8.321897</td>
+      <td>0.087179</td>
+      <td>4186.500000</td>
+      <td>0.442495</td>
+      <td>3.967141</td>
+      <td>12</td>
+      <td>35.983187</td>
+      <td>[0.16609746768320133]</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>1</td>
+      <td>6</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>34970</td>
+      <td>36.71</td>
+      <td>27.389032</td>
+      <td>0.352668</td>
+      <td>3735.533333</td>
+      <td>0.264411</td>
+      <td>5.394392</td>
+      <td>9</td>
+      <td>36.705859</td>
+      <td>[0.1402171529768576]</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1</td>
+      <td>7</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>2967794</td>
+      <td>30.64</td>
+      <td>6.704366</td>
+      <td>0.070518</td>
+      <td>3414.166667</td>
+      <td>0.390667</td>
+      <td>4.125512</td>
+      <td>11</td>
+      <td>30.639777</td>
+      <td>[0.0816930528050395]</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1</td>
+      <td>8</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>59</td>
+      <td>56.67</td>
+      <td>23.393769</td>
+      <td>0.258938</td>
+      <td>3471.000000</td>
+      <td>0.397917</td>
+      <td>3.593157</td>
+      <td>10</td>
+      <td>56.666667</td>
+      <td>[0.12140059506352861]</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1</td>
+      <td>9</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>5917909</td>
+      <td>10.10</td>
+      <td>6.558216</td>
+      <td>0.069720</td>
+      <td>3939.133333</td>
+      <td>0.352273</td>
+      <td>6.133720</td>
+      <td>7</td>
+      <td>10.097506</td>
+      <td>[0.16524134542296162]</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2</td>
+      <td>0</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>349</td>
+      <td>32.82</td>
+      <td>25.944670</td>
+      <td>0.292576</td>
+      <td>3368.600000</td>
+      <td>0.209524</td>
+      <td>3.750084</td>
+      <td>15</td>
+      <td>32.817460</td>
+      <td>[0.15660936139458068]</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2</td>
+      <td>1</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>1826</td>
+      <td>31.06</td>
+      <td>14.386101</td>
+      <td>0.160324</td>
+      <td>3061.888889</td>
+      <td>0.275084</td>
+      <td>5.297506</td>
+      <td>6</td>
+      <td>31.055556</td>
+      <td>[0.1443963218278032]</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>2</td>
+      <td>2</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>66</td>
+      <td>46.67</td>
+      <td>24.512396</td>
+      <td>0.272902</td>
+      <td>1656.333333</td>
+      <td>0.408333</td>
+      <td>3.427142</td>
+      <td>10</td>
+      <td>46.666667</td>
+      <td>[0.10506273525832888]</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>2</td>
+      <td>3</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>843</td>
+      <td>20.02</td>
+      <td>12.219981</td>
+      <td>0.129773</td>
+      <td>37.933333</td>
+      <td>0.424866</td>
+      <td>4.347529</td>
+      <td>10</td>
+      <td>20.022282</td>
+      <td>[0.08233474456933955]</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>2</td>
+      <td>4</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>2745255</td>
+      <td>19.83</td>
+      <td>21.547547</td>
+      <td>0.295447</td>
+      <td>3129.266667</td>
+      <td>0.210909</td>
+      <td>3.705701</td>
+      <td>14</td>
+      <td>19.831489</td>
+      <td>[0.09423720971902239]</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2</td>
+      <td>5</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>232</td>
+      <td>35.39</td>
+      <td>8.155326</td>
+      <td>0.085397</td>
+      <td>3795.500000</td>
+      <td>0.410833</td>
+      <td>4.125512</td>
+      <td>11</td>
+      <td>35.388889</td>
+      <td>[0.044989875320305316]</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>2</td>
+      <td>6</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>124</td>
+      <td>38.43</td>
+      <td>35.991951</td>
+      <td>0.465078</td>
+      <td>3027.133333</td>
+      <td>0.476190</td>
+      <td>2.990912</td>
+      <td>11</td>
+      <td>38.425926</td>
+      <td>[0.13364980249370828]</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>2</td>
+      <td>7</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>8296287</td>
+      <td>30.73</td>
+      <td>20.636476</td>
+      <td>0.247780</td>
+      <td>3694.777778</td>
+      <td>0.336508</td>
+      <td>4.101061</td>
+      <td>11</td>
+      <td>30.734219</td>
+      <td>[0.14876591904748074]</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>2</td>
+      <td>8</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>880809</td>
+      <td>30.21</td>
+      <td>6.031381</td>
+      <td>0.063156</td>
+      <td>3972.833333</td>
+      <td>0.256258</td>
+      <td>3.993197</td>
+      <td>12</td>
+      <td>30.206086</td>
+      <td>[0.10044430391744703]</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>2</td>
+      <td>9</td>
+      <td>EMD</td>
+      <td>1</td>
+      <td>2</td>
+      <td>90</td>
+      <td>5</td>
+      <td>30</td>
+      <td>100</td>
+      <td>600.61499</td>
+      <td>...</td>
+      <td>2490511</td>
+      <td>13.44</td>
+      <td>13.450237</td>
+      <td>0.151170</td>
+      <td>4338.666667</td>
+      <td>0.399194</td>
+      <td>3.974835</td>
+      <td>10</td>
+      <td>13.439635</td>
+      <td>[0.11772585065374275]</td>
+    </tr>
+  </tbody>
+</table>
+<p>30 rows × 28 columns</p>
+</div></div></div>
+</div>
+</div>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Examples</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../peaks_extraction/peaks_extraction.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Peaks extraction methods</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Antoine Bellemare & François Lespinasse. This documentation is licensed under a <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> license.<br/>
+  
+      &copy; Copyright 2023–2023.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
