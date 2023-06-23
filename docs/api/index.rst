@@ -10,6 +10,8 @@ API
 
    biotuner_object
    metrics
+   harmonic_spectrum
+   harmonic_connectivity
    peaks_extension
    peaks_extraction
    rhythm_construction
